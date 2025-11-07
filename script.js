@@ -138,8 +138,9 @@ function init() {
 }
 
 function checkToolAvailability(path) {
-  // Assume available; avoid noisy network checks in console.
-  // You can enable a real check later if desired.
+  // Treat localhost-only links as unavailable in deployed environments
+  // to avoid broken navigation on Vercel.
+  if (/127\.0\.0\.1|localhost/i.test(path)) return false;
   return true;
 }
 
@@ -156,13 +157,15 @@ async function renderTools() {
     const available = checkToolAvailability(tool.path);
     const card = document.createElement("div");
     card.className = "card" + (available ? "" : " offline");
+    const hrefMain = available ? tool.path : "#";
+    const disabledAttrs = available ? "" : "aria-disabled=\"true\" onclick=\"return false\"";
     card.innerHTML = `
       <div class="icon">${tool.icon || "🖼️"}</div>
       <div class="title">${tool.name}</div>
       <div class="desc">${tool.desc}</div>
       ${tool.desc.includes("Next.js") ? '<span class="badge">Server app</span>' : ''}
       <div class="actions">
-        <a class="btn" href="${tool.path}" ${available ? "" : "aria-disabled=\"true\""}>${available ? "Open" : "Unavailable"}</a>
+        <a class="btn" href="${hrefMain}" ${disabledAttrs}>${available ? "Open" : "Unavailable"}</a>
         ${available ? `<a class="btn" href="${tool.path}" target="_blank" rel="noopener">New Tab</a>` : ""}
       </div>
     `;
