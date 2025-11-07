@@ -1,6 +1,6 @@
-# Image Tools Website
+# Image Tools Website (Next.js)
 
-A comprehensive collection of web-based image processing tools, all in one place.
+A Next.js umbrella app that hosts multiple image tools under one site. Server tools run on Node.js API routes; client tools run fully in-browser.
 
 ## 🛠️ Tools Available
 
@@ -26,7 +26,23 @@ A comprehensive collection of web-based image processing tools, all in one place
 
 ## 🚀 Deployment
 
-This site is deployed on Vercel and ready to use!
+Deploy with Vercel (recommended):
+
+1. Push this folder to a Git repository (GitHub/GitLab/Bitbucket).
+2. In Vercel, create a new project and select the repository.
+3. Framework preset: `Next.js` (auto-detected).
+4. Build command: `npm run build` (auto).
+5. Node runtime: auto; APIs explicitly set to Node via `export const runtime = 'nodejs'`.
+6. Environment variables: none required.
+
+CLI alternative:
+
+```bash
+npm i -g vercel
+vercel login
+vercel link # choose ImageToolsWebsite
+vercel deploy --prod
+```
 
 ## 📁 Structure
 
@@ -60,11 +76,16 @@ ImageToolsWebsite/
 
 ## 🔧 Development
 
-To run locally:
+Install and run locally:
 ```bash
-python -m http.server 5200
-# or
-npx http-server -p 5200
+npm install
+npm run dev
 ```
 
-Then visit: http://localhost:5200
+Visit: `http://localhost:3000`
+
+Styling uses Tailwind CSS + DaisyUI.
+
+Tailwind config: `tailwind.config.ts`
+
+PostCSS config: `postcss.config.cjs`

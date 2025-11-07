@@ -19,14 +19,15 @@ const tools: Tool[] = [
   { id: 'image-ascii-art-converter', name: 'ASCII Art Converter', desc: 'Turn images into ASCII art.', path: '/tools/image-ascii-art-converter', cat: 'convert', icon: '🔠' },
   { id: 'image-anaglyph-3d', name: 'Anaglyph 3D Maker', desc: 'Create red-cyan 3D images (server page).', path: '/apps/image-anaglyph-3d', cat: 'edit', icon: '🕶️', server: true },
   { id: 'image-format-converter', name: 'Format Converter', desc: 'Convert PNG/JPG/WebP (server page).', path: '/apps/image-format-converter', cat: 'convert', icon: '🔄', server: true },
-  { id: 'image-resizer', name: 'Image Resizer', desc: 'Resize images (server page).', path: '/apps/image-resizer', cat: 'edit', icon: '📐', server: true },
+  { id: 'image-resizer', name: 'Image Resizer', desc: 'Resize images precisely on server.', path: '/tools/image-resizer', cat: 'edit', icon: '📐' },
   { id: 'image-hidden-message', name: 'Hidden Message Finder', desc: 'Reveal hidden patterns (server page).', path: '/apps/image-hidden-message', cat: 'analyze', icon: '🕵️', server: true },
   { id: 'favicon-maker', name: 'Favicon Maker', desc: 'Create custom favicons with cropping and effects.', path: '/tools/favicon-maker', cat: 'create', icon: '🎯' },
   { id: 'animated-gif-maker', name: 'Animated GIF Maker', desc: 'Create animated GIFs from multiple images.', path: '/tools/animated-gif-maker', cat: 'create', icon: '🎬' },
   { id: 'custom-card-maker', name: 'Custom Card Maker', desc: 'Design custom greeting cards with images.', path: '/tools/custom-card-maker', cat: 'create', icon: '💳' },
   { id: 'image-background-changer', name: 'Image Background Changer', desc: 'Replace or remove image backgrounds.', path: '/tools/image-background-changer', cat: 'edit', icon: '🖼️' },
   { id: 'image-puzzle-game', name: 'Image Puzzle Game', desc: 'Turn images into interactive puzzles.', path: '/tools/image-puzzle-game', cat: 'fun', icon: '🧩' },
-  { id: 'image-to-cartoon', name: 'Image to Cartoon', desc: 'Convert photos to cartoon style (server page).', path: '/apps/image-to-cartoon', cat: 'convert', icon: '🎨', server: true },
+  { id: 'pdf-to-word', name: 'PDF to Word', desc: 'Convert PDFs to DOCX with local extract.', path: '/tools/pdf-to-word', cat: 'convert', icon: '📄' },
+  { id: 'image-to-cartoon', name: 'Image to Cartoon', desc: 'Convert photos to cartoon style (client page).', path: '/apps/image-to-cartoon', cat: 'convert', icon: '🎨', server: true },
 ];
 
 function ToolCard({ tool }: { tool: Tool }) {
@@ -39,7 +40,7 @@ function ToolCard({ tool }: { tool: Tool }) {
       {tool.server ? <span className="badge">Server app</span> : null}
       <div className="actions">
         {unavailable ? (
-          <a className="btn" aria-disabled="true" onClick={(e) => e.preventDefault()} href="#">Unavailable</a>
+          <span className="btn" aria-disabled="true">Unavailable</span>
         ) : (
           <Link className="btn" href={tool.path}>Open</Link>
         )}
