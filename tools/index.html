@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Tools - All Modules</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .tools-directory {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .tools-directory h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .tool-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .tool-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        .tool-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .tool-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2563eb;
+        }
+        .tool-desc {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        .tool-category {
+            display: inline-block;
+            background: #e0e7ff;
+            color: #4338ca;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            text-transform: capitalize;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #2563eb;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="tools-directory">
+        <a href="../" class="back-link">← Back to Main Site</a>
+        <h1>All Image Tools</h1>
+        <div class="tools-grid" id="toolsGrid">
+            <!-- Tools will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        const tools = [
+            {
+                id: "image-ocr-extractor",
+                name: "Image OCR Extractor",
+                desc: "Extract text from images with local or cloud OCR.",
+                path: "image-ocr-extractor/",
+                cat: "analyze",
+                icon: "🔎",
+            },
+            {
+                id: "image-dithering-tool",
+                name: "Image Dithering Tool",
+                desc: "Apply classic dithering patterns to images.",
+                path: "image-dithering-tool/",
+                cat: "edit",
+                icon: "🟣",
+            },
+            {
+                id: "image-exif-tool",
+                name: "Image EXIF Tool",
+                desc: "View and strip EXIF metadata.",
+                path: "image-exif-tool/",
+                cat: "analyze",
+                icon: "📋",
+            },
+            {
+                id: "image-pixel-sorter",
+                name: "Image Pixel Sorter",
+                desc: "Create glitch art via pixel sorting.",
+                path: "image-pixel-sorter/",
+                cat: "edit",
+                icon: "🧪",
+            },
+            {
+                id: "image-ascii-art-converter",
+                name: "ASCII Art Converter",
+                desc: "Turn images into ASCII art.",
+                path: "image-ascii-art-converter/",
+                cat: "convert",
+                icon: "🔠",
+            },
+            {
+                id: "favicon-maker",
+                name: "Favicon Maker",
+                desc: "Create custom favicons with cropping and effects.",
+                path: "favicon-maker/",
+                cat: "create",
+                icon: "🎯",
+            },
+            {
+                id: "animated-gif-maker",
+                name: "Animated GIF Maker",
+                desc: "Create animated GIFs from multiple images.",
+                path: "animated-gif-maker/",
+                cat: "create",
+                icon: "🎬",
+            },
+            {
+                id: "custom-card-maker",
+                name: "Custom Card Maker",
+                desc: "Design custom greeting cards with images.",
+                path: "custom-card-maker/",
+                cat: "create",
+                icon: "💳",
+            },
+            {
+                id: "image-background-changer",
+                name: "Image Background Changer",
+                desc: "Replace or remove image backgrounds.",
+                path: "image-background-changer/",
+                cat: "edit",
+                icon: "🖼️",
+            },
+            {
+                id: "image-puzzle-game",
+                name: "Image Puzzle Game",
+                desc: "Turn images into interactive puzzles.",
+                path: "image-puzzle-game/",
+                cat: "fun",
+                icon: "🧩",
+            },
+        ];
+
+        function populateTools() {
+            const grid = document.getElementById('toolsGrid');
+            tools.forEach(tool => {
+                const card = document.createElement('a');
+                card.className = 'tool-card';
+                card.href = tool.path;
+                card.innerHTML = `
+                    <div class="tool-icon">${tool.icon}</div>
+                    <div class="tool-name">${tool.name}</div>
+                    <div class="tool-desc">${tool.desc}</div>
+                    <div class="tool-category">${tool.cat}</div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', populateTools);
+    </script>
+</body>
+</html>
