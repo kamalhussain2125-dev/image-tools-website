@@ -19,7 +19,11 @@ export async function POST(req: NextRequest) {
     const doc = new Document({ sections: [{ properties: {}, children: paragraphs }] });
     const buffer = await Packer.toBuffer(doc);
 
-    return new Response(buffer, {
+    const blob = new Blob([buffer], {
+      type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    });
+
+    return new Response(blob, {
       status: 200,
       headers: {
         "content-type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
